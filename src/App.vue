@@ -2,39 +2,68 @@
 
 <template>
     <div>
-        It freaking works
+        <!-- homework 1 -->
+        <!-- task1
+        Создать кнопку "Перевернуть". При клике на кнопку текст кнопки, должен перевернуться и отобразиться в обратном порядке.-->
+        <button @click="turnAround">{{ message }}</button>
 
-        <button @click="addLike">
-            Like
-        </button>
-        <button @click="addDislike">
-            Dislike
-        </button>
-        <div> likes count: <strong>{{ likes }}</strong> </div>
-        <div> dislikes count: <strong>{{ dislikes }}</strong> </div>
+        <!-- task 2
+        Есть список элементов. Пользователь может добавлять новые элементы списка с текстом “Новый элемент списка” нажав на кнопку "Добавить". 
+            task 3
+            * При клике на элемент списка он должен быть удален. (по желанию)
+        -->
+
+        <ul>
+            <li v-for="(text, index) in liArray"  @click="deleteLi(index)" :key="text.id"> {{ text.text }} </li>
+        </ul>
+        <button @click="addLi">Добавить</button>
     </div>
 </template>
 
-<script>
+<script defer>
 //внутри - логика компонента
+import { onMounted, onUnmounted } from "vue";
 export default { //обязательная строка
     data() {
         return {
-            likes: 0,
-            dislikes: 5,
+            message: 'Перевернуть',
+            liArray:[
+                {text: 'Element'},
+                {text: 'Element'},
+                {text: 'Element'},
+            ],
+            standartText: 'New element', 
         }
     },
 
     methods:{
-        addLike(){
-            this.likes += 1;
+        turnAround(){
+            this.message = this.message
+            .split('')
+            .reverse()
+            .join('')
         },
-        addDislike(){
-            this.dislikes += 1;
+
+        addLi(){
+            this.liArray.push({text:this.standartText});
+            
+            //also works
+            // this.ul = document.querySelector('ul');
+            // console.log(this.ul);
+            // this.ul.insertAdjacentHTML("beforeend",'<li @click="deleteLi">Новый элемент списка, можно удалить по клику</li>');  
+            // console.log(this.liArray);
+        },
+
+        deleteLi(index){
+            this.liArray.splice(index, 1);
+
+            //doesnt work
+            // this.li = EventTarget;
+            // console.log(this.li);
         }
+
     }
 }
-
 </script>
 
 <style></style>
