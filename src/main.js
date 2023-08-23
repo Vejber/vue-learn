@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
-// import App from './App.vue'
-import App from './Header-template.vue'
+import App from './App.vue'
+// import App from './Header-template.vue'
 
-// createApp(App).mount('#app')
-
-createApp(App).mount('#header-id')
+// app.component('component-a', {
+//     'this is header'
+// });
+createApp(App).mount('#app')
+// createApp(App).mount('#header-id')
